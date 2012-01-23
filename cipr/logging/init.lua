@@ -3,6 +3,8 @@ local date = os.date
 local sformat = string.format
 local io = io
 
+require 'json'
+
 -- Public namespace for the logging module
 local ns = {}
 
@@ -123,7 +125,15 @@ function ns.Logger:log(level, message, ...)
     if STRICT then checkself(self, 'Logger:log') end
     if level and level >= self:getEffectiveLevel() then
         if ... then
-            message = sformat(message, ...)
+            local args = {...}
+            for i=1,#args do
+                if type(args[i]) == 'table' then
+                    -- Encode tables as json so we can log them
+                    args[i] = json.encode(args[i])
+                end
+            end
+
+            message = sformat(message, unpack(args))
         end
         print(sformat('%s [%s] %-7s %s', date(timeFormat), self._name, levelNameMap[level], message))
     end
