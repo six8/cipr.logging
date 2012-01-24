@@ -11,7 +11,7 @@ Installation is done with `cipr <http://github.com/six8/corona-cipr>`_
 
 ::
 
-	cipr install:git://github.com/six8/cipr.logging.git
+	cipr install git://github.com/six8/cipr.logging.git
 
 Usage
 =====
