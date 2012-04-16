@@ -136,6 +136,7 @@ function ns.Logger:log(level, message, ...)
             message = sformat(message, unpack(args))
         end
         print(sformat('%s [%s] %-7s %s', date(timeFormat), self._name, levelNameMap[level], message))
+        io.output():flush()
     end
 end
 
