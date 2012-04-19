@@ -101,11 +101,15 @@ function ns.Logger:setLevel(level)
     self._level = level
 
     if self._parent == nil then
-        if level == DEBUG then
-            -- Turn off console output buffering
-            io.output():setvbuf('line')
+    	local platform = system.getInfo("platformName")
+		if platform == "Win" then
+		    -- Disable buffering in windows simulator
+            io.output():setvbuf('no')
+        elseif platform == "Mac OS X" or level == DEBUG then
+            -- Use line buffer if debugging or on MacOSX simulator
+		    io.output():setvbuf('line')
         else
-            -- Turn on console output buffering
+            -- Turn on console output buffering on devices when not debugging, to avoid performance issues
             io.output():setvbuf('full')
         end
     end
