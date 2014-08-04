@@ -2,8 +2,7 @@ local print = print
 local date = os.date
 local sformat = string.format
 local io = io
-
-require 'json'
+local json = require 'json'
 
 -- Public namespace for the logging module
 local ns = {}

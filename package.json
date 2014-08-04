@@ -1,5 +1,6 @@
 {
 	"name" : "cipr.logging",
-	"version" : "0.7",
-	"author" : "Mike Thornton <six8@devdetails.com>"
+	"version" : "0.8",
+	"author" : "Mike Thornton <six8@devdetails.com>",
+    "corona" : "2014.2189"
 }
